@@ -31,19 +31,19 @@ Route::middleware(['throttle:authentication'])->group(function () {
 
     Route::post('/modules/discord', [Auth\Modules\DiscordLoginController::class, 'requestToken'])->middleware('recaptcha');
     Route::get('/modules/discord/authenticate', [Auth\Modules\DiscordLoginController::class, 'authenticate'])
-        ->middleware('recaptcha')
+     //   ->middleware('recaptcha')
         ->name('auth.modules.discord.authenticate');
 
     Route::post('/modules/google', [Auth\Modules\GoogleLoginController::class, 'requestToken'])->middleware('recaptcha');
     Route::get('/modules/google/authenticate', [Auth\Modules\GoogleLoginController::class, 'authenticate'])
-        ->middleware('recaptcha')
+     //   ->middleware('recaptcha')
         ->name('auth.modules.google.authenticate');
 
     // Forgot password route. A post to this endpoint will trigger an
     // email to be sent containing a reset token.
     Route::post('/password', [Auth\ForgotPasswordController::class, 'verify'])
         ->name('auth.post.forgot-password')
-        ->middleware('recaptcha');
+     //   ->middleware('recaptcha');
 });
 
 // Password reset routes. This endpoint is hit after going through
