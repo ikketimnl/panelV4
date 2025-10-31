@@ -65,7 +65,7 @@ function DashboardRouter() {
                         <h1 className={'text-2xl text-neutral-50 whitespace-nowrap font-medium'}>{name}</h1>
                     ) : (
                         <img
-                            src={logo?.toString() || 'https://avatars.githubusercontent.com/u/91636558'}
+                            src={logo?.toString() || 'https://ikketim.nl/wp-content/uploads/2025/09/cropped-ikketim-logo-new.png'}
                             className={'mt-4 w-12'}
                             alt={'Logo'}
                         />
