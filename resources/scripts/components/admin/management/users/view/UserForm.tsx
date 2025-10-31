@@ -27,6 +27,8 @@ interface ctx {
     setUser: Action<ctx, User | undefined>;
 }
 
+const currentUser = useStoreState(state => state.user.data);
+
 export const Context: ReturnType<typeof createContextStore<ctx>> = createContextStore<ctx>({
     user: undefined,
 
@@ -34,7 +36,7 @@ export const Context: ReturnType<typeof createContextStore<ctx>> = createContext
         state.user = payload;
     }),
 });
-
+    
 export interface Params {
     title: string;
     initialValues?: UpdateUserValues;
@@ -134,33 +136,35 @@ export default function UserForm({ title, initialValues, children, onSubmit, uui
                                 }
                             />
                         </FieldRow>
-                    </AdminBox>
-                    <AdminBox title={'Permission Control'} css={tw`relative mt-6`} icon={faToggleOn}>
-                        <SpinnerOverlay visible={isSubmitting} />
-                        <div className={'grid lg:grid-cols-2 gap-4'}>
-                            <div css={tw`w-full flex flex-row mb-6`}>
-                                <div
-                                    css={tw`w-full border border-neutral-900 shadow-inner p-4 rounded`}
-                                    style={{ backgroundColor: colors.headers }}
-                                >
-                                    <FormikSwitch
-                                        name={'rootAdmin'}
-                                        label={'Root Admin'}
-                                        description={'Should this user be a root administrator?'}
-                                    />
-                                    <Alert type={'warning'} className={'mt-2'} small>
-                                        Enabling RootAdmin gives the user full access. It is recommended to keep this
-                                        off, but assign an admin role to the user to grant specific permissions.
-                                    </Alert>
-                                </div>
-                            </div>
+                        
+                        <AdminBox title={'Permission Control'} css={tw`relative mt-6`} icon={faToggleOn}>
+                            <SpinnerOverlay visible={isSubmitting} />
+                            <div className={'grid lg:grid-cols-2 gap-4'}>
+                                    {currentUser?.rootAdmin && (
+                                        <div css={tw`w-full flex flex-row mb-6`}>
+                                            <div
+                                              css={tw`w-full border border-neutral-900 shadow-inner p-4 rounded`}
+                                              style={{ backgroundColor: colors.headers }}
+                                                >
+                                                  <FormikSwitch
+                                                    name={'rootAdmin'}
+                                                    label={'Root Admin'}
+                                                    description={'Should this user be a root administrator?'}
+                                                  />
+                                              <Alert type={'warning'} className={'mt-2'} small>
+                                                Enabling RootAdmin gives the user full access. It is recommended to keep this
+                                                off, but assign an admin role to the user to grant specific permissions.
+                                                </Alert>
+                                            </div>
+                                        </div>
+                                    )}
                             <div>
-                                <RoleSelect selected={currentRole} />
-                                <p className={'mt-1 text-xs'}>
-                                    If you wish, you can assign an administrator role to restrict permissions.
-                                </p>
-                            </div>
+                              <RoleSelect selected={currentRole} />
+                              <p className={'mt-1 text-xs'}>
+                                If you wish, you can assign an administrator role to restrict permissions.
+                              </p>
                         </div>
+                      </div>
                     </AdminBox>
                     <div css={tw`w-full flex flex-row items-center mt-6`}>
                         {children}
