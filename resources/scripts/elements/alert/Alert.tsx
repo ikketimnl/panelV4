@@ -19,6 +19,7 @@ export default ({ type, className, children, small }: AlertProps) => {
                     ['border-blue-500 bg-blue-500/25']: type === 'info',
                     ['border-yellow-500 bg-yellow-500/25']: type === 'warning',
                     ['border-red-500 bg-red-500/25']: type === 'danger',
+                    ['border-pink-500 bg-pink-500/25']: type === 'ikketim',
                 },
                 className,
             )}
