@@ -43,7 +43,7 @@ Route::middleware(['throttle:authentication'])->group(function () {
     // email to be sent containing a reset token.
     Route::post('/password', [Auth\ForgotPasswordController::class, 'verify'])
         ->name('auth.post.forgot-password')
-     //   ->middleware('recaptcha');
+        ->middleware('recaptcha');
 });
 
 // Password reset routes. This endpoint is hit after going through
