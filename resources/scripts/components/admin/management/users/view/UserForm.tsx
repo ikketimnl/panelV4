@@ -76,106 +76,110 @@ export default function UserForm({ title, initialValues, children, onSubmit, uui
     }
 
     return (
-        <Formik
-            onSubmit={submit}
-            initialValues={initialValues}
-            validationSchema={object().shape({
-                username: string().min(1).max(32),
-                email: string(),
-                rootAdmin: bool().required(),
-            })}
-        >
-            {({ isSubmitting, isValid }) => (
-                <Form>
-                    <AdminBox title={title} css={tw`relative`} icon={faIdBadge}>
-                        <SpinnerOverlay visible={isSubmitting} />
-                        <FieldRow>
-                            {uuid && (
-                                <div>
-                                    <Label>UUID</Label>
-                                    <CopyOnClick text={uuid}>
-                                        <Input type={'text'} value={uuid} readOnly />
-                                    </CopyOnClick>
-                                </div>
-                            )}
-                            {uuid && (
-                                <Field
-                                    id={'externalId'}
-                                    name={'externalId'}
-                                    label={'External ID'}
-                                    type={'text'}
-                                    description={
-                                        'Used by external integrations, this field should not be modified unless you know what you are doing.'
-                                    }
-                                />
-                            )}
+    <Formik
+        onSubmit={submit}
+        initialValues={initialValues}
+        validationSchema={object().shape({
+            username: string().min(1).max(32),
+            email: string(),
+            rootAdmin: bool().required(),
+        })}
+    >
+        {({ isSubmitting, isValid }) => (
+            <Form>
+                <AdminBox title={title} css={tw`relative`} icon={faIdBadge}>
+                    <SpinnerOverlay visible={isSubmitting} />
+                    <FieldRow>
+                        {uuid && (
+                            <div>
+                                <Label>UUID</Label>
+                                <CopyOnClick text={uuid}>
+                                    <Input type={'text'} value={uuid} readOnly />
+                                </CopyOnClick>
+                            </div>
+                        )}
+                        {uuid && (
                             <Field
-                                id={'username'}
-                                name={'username'}
-                                label={'Username'}
+                                id={'externalId'}
+                                name={'externalId'}
+                                label={'External ID'}
                                 type={'text'}
-                                description={"The user's username, what else would go here?"}
-                            />
-                            <Field
-                                id={'email'}
-                                name={'email'}
-                                label={'Email Address'}
-                                type={'email'}
-                                description={"The user's email address, what else would go here?"}
-                            />
-                            <Field
-                                id={'password'}
-                                name={'password'}
-                                label={'Password'}
-                                type={'password'}
-                                placeholder={'••••••••'}
-                                autoComplete={'new-password'}
-                                /* TODO: Change description depending on if user is being created or updated. */
                                 description={
-                                    'Leave empty to email the user a link where they will be required to set a password.'
+                                    'Used by external integrations, this field should not be modified unless you know what you are doing.'
                                 }
                             />
-                        </FieldRow>
-                        
-                        <AdminBox title={'Permission Control'} css={tw`relative mt-6`} icon={faToggleOn}>
-                            <SpinnerOverlay visible={isSubmitting} />
-                            <div className={'grid lg:grid-cols-2 gap-4'}>
-                                    {currentUser?.rootAdmin && (
-                                        <div css={tw`w-full flex flex-row mb-6`}>
-                                            <div
-                                              css={tw`w-full border border-neutral-900 shadow-inner p-4 rounded`}
-                                              style={{ backgroundColor: colors.headers }}
-                                                >
-                                                  <FormikSwitch
-                                                    name={'rootAdmin'}
-                                                    label={'Root Admin'}
-                                                    description={'Should this user be a root administrator?'}
-                                                  />
-                                              <Alert type={'warning'} className={'mt-2'} small>
-                                                Enabling RootAdmin gives the user full access. It is recommended to keep this
-                                                off, but assign an admin role to the user to grant specific permissions.
-                                                </Alert>
-                                            </div>
-                                        </div>
-                                    )}
-                            <div>
-                              <RoleSelect selected={currentRole} />
-                              <p className={'mt-1 text-xs'}>
+                        )}
+                        <Field
+                            id={'username'}
+                            name={'username'}
+                            label={'Username'}
+                            type={'text'}
+                            description={"The user's username, what else would go here?"}
+                        />
+                        <Field
+                            id={'email'}
+                            name={'email'}
+                            label={'Email Address'}
+                            type={'email'}
+                            description={"The user's email address, what else would go here?"}
+                        />
+                        <Field
+                            id={'password'}
+                            name={'password'}
+                            label={'Password'}
+                            type={'password'}
+                            placeholder={'••••••••'}
+                            autoComplete={'new-password'}
+                            description={
+                                'Leave empty to email the user a link where they will be required to set a password.'
+                            }
+                        />
+                    </FieldRow>
+                </AdminBox>
+
+                <AdminBox title={'Permission Control'} css={tw`relative mt-6`} icon={faToggleOn}>
+                    <SpinnerOverlay visible={isSubmitting} />
+                    <div className={'grid lg:grid-cols-2 gap-4'}>
+                        {/* ✅ Root admin toggle only visible for root admins */}
+                        {currentUser?.rootAdmin && (
+                            <div css={tw`w-full flex flex-row mb-6`}>
+                                <div
+                                    css={tw`w-full border border-neutral-900 shadow-inner p-4 rounded`}
+                                    style={{ backgroundColor: colors.headers }}
+                                >
+                                    <FormikSwitch
+                                        name={'rootAdmin'}
+                                        label={'Root Admin'}
+                                        description={'Should this user be a root administrator?'}
+                                    />
+                                    <Alert type={'warning'} className={'mt-2'} small>
+                                        Enabling RootAdmin gives the user full access. It is recommended to keep this
+                                        off, but assign an admin role to the user to grant specific permissions.
+                                    </Alert>
+                                </div>
+                            </div>
+                        )}
+
+                        <div>
+                            <RoleSelect selected={currentRole} />
+                            <p className={'mt-1 text-xs'}>
                                 If you wish, you can assign an administrator role to restrict permissions.
-                              </p>
-                        </div>
-                      </div>
-                    </AdminBox>
-                    <div css={tw`w-full flex flex-row items-center mt-6`}>
-                        {children}
-                        <div css={tw`flex ml-auto`}>
-                            <Button type={'submit'} disabled={isSubmitting || !isValid}>
-                                Save Changes
-                            </Button>
+                            </p>
                         </div>
                     </div>
-                </Form>
-            )}
-        </Formik>
-    );
+                </AdminBox>
+
+                <div css={tw`w-full flex flex-row items-center mt-6`}>
+                    {children}
+                    <div css={tw`flex ml-auto`}>
+                        <Button type={'submit'} disabled={isSubmitting || !isValid}>
+                            Save Changes
+                        </Button>
+                    </div>
+                </div>
+            </Form>
+        )}
+    </Formik>
+);
+
 }
