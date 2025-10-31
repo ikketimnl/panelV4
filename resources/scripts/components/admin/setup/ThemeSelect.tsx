@@ -15,6 +15,7 @@ const colorOptions = [
     { hex: '#32559f', name: 'Ptero Blue' },
     { hex: '#ff99c8', name: 'Pretty Pink' },
     { hex: '#5e6472', name: 'Plain Grey' },
+    { hex: '#591C88', name: 'Ikketim button' },
 ];
 
 export default ({ defaultColor }: { defaultColor: string }) => {
