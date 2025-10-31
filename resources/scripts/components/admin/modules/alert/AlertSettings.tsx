@@ -88,6 +88,7 @@ export default () => {
                                     <option value={'info'}>Info (Blue)</option>
                                     <option value={'warning'}>Warning (Yellow)</option>
                                     <option value={'danger'}>Danger (Red)</option>
+                                    <option vallue={'ikketim'}>Ikketim (Themed)</option>
                                 </Select>
                             </div>
                             <p className={'text-gray-400 text-xs mt-1.5'}>
