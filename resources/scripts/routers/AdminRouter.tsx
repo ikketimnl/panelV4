@@ -44,7 +44,11 @@ function AdminRouter() {
                     onClick={() => setCollapsed(!collapsed)}
                 >
                     {!collapsed ? (
-                        <h1 className={'text-2xl text-neutral-50 whitespace-nowrap font-medium'}>{settings.name}</h1>
+                        <img
+                            src={settings.logo?.toString() || 'https://ikketim.nl/wp-content/uploads/2025/09/cropped-ikketim-logo-new.png'}
+                            className={'mt-4 w-12'}
+                            alt={'Logo'}
+                        />
                     ) : (
                         <img
                             src={settings.logo?.toString() || 'https://ikketim.nl/wp-content/uploads/2025/09/cropped-ikketim-logo-new.png'}
