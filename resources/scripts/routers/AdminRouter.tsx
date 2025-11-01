@@ -45,7 +45,7 @@ function AdminRouter() {
                 >
                     {!collapsed ? (
                         <img
-                            src={settings.logo?.toString() || 'https://ikketim.nl/wp-content/uploads/2025/10/HD-Banner.jpg'}
+                            src={settings.logo?.toString() || 'https://ikketim.nl/wp-content/uploads/2025/11/BannerLogo3.png'}
                             className={'mt-4 w-12'}
                             alt={'Logo'}
                         />
