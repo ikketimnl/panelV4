@@ -102,25 +102,25 @@ function ServerRouter() {
                     )}
                 </MobileSidebar>
                 <Sidebar className={'flex-none'} $collapsed={collapsed} theme={theme}>
-                <div
-                    className={
-                        'w-full flex flex-col items-center justify-center mt-1 mb-3 select-none cursor-pointer'
-                    }
-                    onClick={() => setCollapsed(!collapsed)}
-                >
-                    {!collapsed ? (
-                        <img
+                    <div
+                        className={
+                            'w-full flex flex-col items-center justify-center mt-1 mb-3 select-none cursor-pointer'
+                        }
+                        onClick={() => setCollapsed(!collapsed)}
+                    >
+                        {!collapsed ? (
+                            <img
                             src={logo?.toString() || 'https://ikketim.nl/wp-content/uploads/2025/11/BannerLogo3.png'}
                             className={'mt-4 w-full h-auto object-contain px-2'}
                             alt={'Logo'}
                         />
-                    ) : (
-                        <img
-                            src={settings.logo?.toString() || 'https://ikketim.nl/wp-content/uploads/2025/09/cropped-ikketim-logo-new.png'}
-                            className={'mt-4 w-12'}
-                            alt={'Logo'}
-                        />
-                    )}
+                        ) : (
+                            <img
+                                src={logo?.toString() || 'https://avatars.githubusercontent.com/u/91636558'}
+                                className={'mt-4 w-12'}
+                                alt={'Logo'}
+                            />
+                        )}
                     </div>
                     <Sidebar.Wrapper theme={theme} className={'mb-auto'}>
                         <NavLink to={'/'} end className={'mb-[18px]'}>
