@@ -63,7 +63,7 @@ function DashboardRouter() {
                 >
                     {!collapsed ? (
                         <img
-                            src={logo?.toString() || 'https://ikketim.nl/wp-content/uploads/2025/11/BannerLogo.png'}
+                            src={logo?.toString() || 'https://ikketim.nl/wp-content/uploads/2025/11/BannerLogo3.png'}
                             className={'mt-4 w-12'}
                             alt={'Logo'}
                         />
