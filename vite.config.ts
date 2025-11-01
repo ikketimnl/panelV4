@@ -75,6 +75,12 @@ export default defineConfig({
         },
     },
 
+    build: {
+        outDir: 'public/build',
+        manifest: true,
+        emptyOutDir: true,
+    },
+
     test: {
         environment: 'happy-dom',
         include: ['resources/scripts/**/*.{spec,test}.{ts,tsx}'],
