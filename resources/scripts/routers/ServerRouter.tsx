@@ -102,16 +102,16 @@ function ServerRouter() {
                     )}
                 </MobileSidebar>
                 <Sidebar className={'flex-none'} $collapsed={collapsed} theme={theme}>
-                    <div
-                        className={
-                            'h-16 w-full flex flex-col items-center justify-center mt-1 mb-3 select-none cursor-pointer'
-                        }
-                        onClick={() => setCollapsed(!collapsed)}
-                    >
+                <div
+                    className={
+                        'w-full flex flex-col items-center justify-center mt-1 mb-3 select-none cursor-pointer'
+                    }
+                    onClick={() => setCollapsed(!collapsed)}
+                >
                     {!collapsed ? (
                         <img
-                            src={settings.logo?.toString() || 'https://ikketim.nl/wp-content/uploads/2025/11/BannerLogo3.png'}
-                            className={'mt-4 w-12'}
+                            src={logo?.toString() || 'https://ikketim.nl/wp-content/uploads/2025/11/BannerLogo3.png'}
+                            className={'mt-4 w-full h-auto object-contain px-2'}
                             alt={'Logo'}
                         />
                     ) : (
