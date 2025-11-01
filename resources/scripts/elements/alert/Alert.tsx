@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 interface AlertProps {
-    type: 'success' | 'info' | 'warning' | 'danger';
+    type: 'success' | 'info' | 'warning' | 'danger' | 'ikketim';
     className?: string;
     children: React.ReactNode;
     small?: boolean;
