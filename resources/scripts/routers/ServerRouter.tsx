@@ -110,7 +110,7 @@ function ServerRouter() {
                     >
                     {!collapsed ? (
                         <img
-                            src={settings.logo?.toString() || 'https://ikketim.nl/wp-content/uploads/2025/09/cropped-ikketim-logo-new.png'}
+                            src={settings.logo?.toString() || 'https://ikketim.nl/wp-content/uploads/2025/10/HD-Banner.jpg'}
                             className={'mt-4 w-12'}
                             alt={'Logo'}
                         />
